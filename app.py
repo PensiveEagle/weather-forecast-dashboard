@@ -14,13 +14,13 @@ data_view = st.selectbox( "Select data to view: ", ( "Temperature", "Sky" ) )
 if data_view == "Temperature":
     chart_type = st.selectbox( "Select tpye of chart: ", ( "Line Chart", "Bar Chart" ) )
     
-    st.subheader( f"{chart_type} showing Temperature in {location} for the next {number_of_days} days" )
+    st.subheader( f"{chart_type} Showing Temperature in {location} for the Next {number_of_days} Days" )
 
     data = backend.get_data( location = location )
 
     time, temperatures = backend.extract_time_and_temps( data = data, forecast_days = number_of_days )
 
-    chart = backend.generate_chart( x_data = time, y_data = temperatures, x_label = "Time", y_label = "Temperature (C)")
+    chart = backend.generate_chart( x_data = time, y_data = temperatures, x_label = "Time", y_label = "Temperature (C)", type = chart_type)
 
     st.plotly_chart( chart )
     
