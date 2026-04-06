@@ -8,7 +8,7 @@ location = st.text_input( "Location: ", placeholder = "London")
 if location == "":
     location = "London"
 
-number_of_days = st.slider( "Forecasted days: ", min_value = 1, max_value = 5 )
+number_of_days = st.slider( "Forecasted days: ", min_value = 1, max_value = 5, value = 3 )
 data_view = st.selectbox( "Select data to view: ", ( "Temperature", "Sky" ) )
 
 if data_view == "Temperature":
