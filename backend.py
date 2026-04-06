@@ -20,9 +20,11 @@ def extract_time_and_temps( data: dict, forecast_days: int = 1) -> tuple:
     
     return ( time, temperatures )
 
-def generate_chart( x_data: list, y_data: list, x_label: str, y_label: str, type: str = "line" ):
-    if type == "line":
+def generate_chart( x_data: list, y_data: list, x_label: str, y_label: str, type: str = "Line Chart" ):
+    if type == "Line Chart":
         chart = px.line( x = x_data, y = y_data, labels = {"x": x_label, "y": y_label})
+    elif type == "Bar Chart":
+        chart = px.bar( x = x_data, y = y_data, labels = {"x": x_label, "y": y_label})
         
     return chart
 
