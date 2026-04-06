@@ -1,6 +1,11 @@
 import streamlit as st
 import plotly.express as px
 import backend
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
+weather_api_key = str( getenv( "OPEN_WEATHER_API_KEY" ) )
 
 st.title( f"Weather forecast for the next days" )
 location = st.text_input( "Location: ", placeholder = "London")
@@ -16,7 +21,7 @@ if data_view == "Temperature":
     
     st.subheader( f"{chart_type} Showing Temperature in {location} for the Next {number_of_days} Days" )
 
-    data = backend.get_data( location = location )
+    data = backend.get_data( location = location, api_key = weather_api_key )
 
     time, temperatures = backend.extract_time_and_temps( data = data, forecast_days = number_of_days )
 

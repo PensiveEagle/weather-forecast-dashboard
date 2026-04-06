@@ -1,11 +1,11 @@
 import requests
 import plotly.express as px
 
-def get_data( location: str = "London") -> dict:
+def get_data( api_key: str, location: str = "London" ) -> dict:
     if location == "":
         location = "London"
     
-    url = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}?unitGroup=uk&include=hours&key=5UQAJNJT6DRHMMD7CEQEJBDLC&contentType=flatjson"
+    url = f"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}?unitGroup=uk&include=hours&key={api_key}&contentType=flatjson"
     response = requests.get( url )
     json_data = response.json()
     data = json_data["hours"]
@@ -30,7 +30,14 @@ def generate_chart( x_data: list, y_data: list, x_label: str, y_label: str, type
 
 
 if __name__ == "__main__":
-    data = get_data()
+    from dotenv import load_dotenv
+    from os import getenv
+
+    load_dotenv()
+    weather_api_key = str( getenv( "OPEN_WEATHER_API_KEY" ) )
+    
+    
+    data = get_data( api_key = weather_api_key )
     time, temperatures = extract_time_and_temps( data )
     
     print( time )
