@@ -12,7 +12,9 @@ number_of_days = st.slider( "Forecasted days: ", min_value = 1, max_value = 5, v
 data_view = st.selectbox( "Select data to view: ", ( "Temperature", "Sky" ) )
 
 if data_view == "Temperature":
-    st.subheader( f"{data_view} for the next {number_of_days} days in {location}" )
+    chart_type = st.selectbox( "Select tpye of chart: ", ( "Line Chart", "Bar Chart" ) )
+    
+    st.subheader( f"{chart_type} showing Temperature in {location} for the next {number_of_days} days" )
 
     data = backend.get_data( location = location )
 
