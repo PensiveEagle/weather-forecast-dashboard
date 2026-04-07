@@ -109,7 +109,13 @@ This project is a learning project that aims to create a weather forecast dashbo
    ```
 5. Run the docker container
    ```sh
-   docker run --rm -d -p 5005:5005 --name weather-dash-1 weather-forecast-dash
+   docker run --rm -d -p 5005:5005 --env-file ./.env --name weather-dash-1 weather-forecast-dash
+   ```
+
+
+6. To stop the application
+   ```sh
+   docker stop weather-dash-1
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
